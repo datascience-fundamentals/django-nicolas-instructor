@@ -1,44 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos</title>
-</head>
-
-<body>
-  {% extends 'base.html' %}
-  {% block content %}
-  <h1>Productos</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Stock</th>
-        <th>Puntaje</th>
-        <th>Categoría</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for producto in productos %}
-      <tr>
-        <td>
-          <a href="{% url 'productos:detalle' producto.id %}">
-            {{producto.nombre}}
-          </a>
-        </td>
-        <td>{{producto.stock}}</td>
-        <td>{{producto.puntaje}}</td>
-        <!-- by displaying categoria object, It will show the value returned for __str__ magic method -->
-        <td>{{producto.categoria}}</td>
-        <!-- <td>{{producto.categoria.nombre}}</td> -->
-      </tr>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endblock %}
-</body>
-
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Productos</h1>
+<a class="btn btn-success" href="{% url "productos:formulario" %}">Nuevo producto</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Stock</th>
+      <th>Puntaje</th>
+      <th>Categoría</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in productos %}
+    <tr>
+      <td>
+        <a href="{% url 'productos:detalle' producto.id %}">
+          {{producto.nombre}}
+        </a>
+      </td>
+      <td>{{producto.stock}}</td>
+      <td>{{producto.puntaje}}</td>
+      <!-- by displaying categoria object, It will show the value returned for __str__ magic method -->
+      <td>{{producto.categoria}}</td>
+      <!-- <td>{{producto.categoria.nombre}}</td> -->
+    </tr>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
